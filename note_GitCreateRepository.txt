@@ -1,0 +1,32 @@
+{
+     Git init - создаст скрытую папку .Git (в которую добавит все файлы проекта)
+git config --global user.name "korsakov_ua_dn"
+git config --global user.email korsakov_ua_dn@gmail.com
+(возможен вариант local только для конкретной папки) 
+} - первое состояние Git - файлы созданы выделены красным цветом, с ними ни чего не происходит.
+
+
+{
+    git add -A (перенести файлы в индекс)
+    git add main.css
+    git add *.css
+} - второе состояние Git - git следит за файлами, выделены зеленым цветом
+
+{
+    git commit -a -m"развернутый коментарий что изменилось"
+}
+
+Повторный commit - 
+    git add -A
+    git commit -a -m"второй коментарий что изменилось"
+
+Просмотреть логи какие commit были и коментарий
+    git log
+
+Создаем новый репозиторий на github
+добавляем удаленный репозиторий, называем его origin, указываем url к нему -
+    git remote add origin https://github.com/Korsakov-ua-dn/JavaScript_Git_Test.git
+теперь на локальный репозиторий связан с удаленным
+Пушим все фалы на удаленный репозиторий
+    git push -u origin master
+Обновить страничку на github убедиться что все файлы перенесены
