@@ -40,5 +40,12 @@ git config --global user.email korsakov_ua_dn@gmail.com
 
 Как работать с этим же репозиторием с другого пк -
     в рабочей папке запускаем терминал
-    git clone https://github.com/Korsakov-ua-dn/JavaScript_Git_Test.git work
-        (ссылку можно скопировать на GitHub)
+    git clone https://github.com/Korsakov-ua-dn/JavaScript_Git_Test.git WorkTest
+        (ссылку можно скопировать на GitHub, название паки указывать не обязательно)
+        потребуется заново запустить VS cod и открыть рабочую папку
+    после завершения работы
+    git add -A
+    git commit -a -m"развернутый коментарий что изменилось"
+    git push
+        Когда клонируеш какой то репозиторий то автоматически будет связан с удаленным.
+
