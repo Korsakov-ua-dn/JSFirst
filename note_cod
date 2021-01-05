@@ -445,3 +445,226 @@ const jonh = {
 };
 Object.setPrototypeOf(jonh, soldier);
 jonh.sayHello();
+
+// 026 Динамическая типизация данных, преобразование данных.
+унарный + преобразование строки в число
+Все данные получаемые от пользователя из баузера всегда будут строкой
+0, '', null, underfind, NaN; - всегда будет являтся - false
+!!"111" - превращает в boolean
+'4' -превращает число в строку
+
+// 027
+оператор && всегда запинается на false и возвращает последнее значение
+оператор || всегда запинается на true и возвращает true значение
+Обращать внимание на последовательность выполнения операторов
+Приоритет && выше чем у ||
+
+028 Получение элементов со страницы DOM
+'use strict';
+// получение элементов и html по id и по tag
+const box = document.getElementById('box');
+
+console.log(box);
+
+const btns = document.getElementsByTagName('button');
+
+console.log(btns[1]);
+
+const circles = document.getElementsByClassName('circle');
+
+console.log(circles);
+// получение элементов по любому css селектору, требуется обозначение селектора
+// обозначение классов . обозначение id #
+const hearts = document.querySelectorAll('.heart');
+
+console.log(hearts[1]);
+
+hearts.forEach(item => {
+    console.log(item);
+})
+
+const oneHeart = document.querySelector('.heart');
+console.log(oneHeart);
+// выведет в консоль первый элемент на странице удовлетворяющий условие
+
+029 Действия с элементами на странице
+'use strict';
+const box = document.getElementById('box'),
+      btns = document.getElementsByTagName('button'),
+      circles = document.getElementsByClassName('circle'),
+      wrapper = document.querySelector('.wrapper'),
+      hearts = wrapper.querySelectorAll('.heart'),
+      oneHeart = wrapper.querySelector('.heart');
+
+// Работаем с инлайн стилями, их приоритет выше чем у css стилей 
+// box.style.backgroundColor = 'blue';
+// box.style.width = '500px';
+btns[2].style.borderRadius = '100%';
+
+// Задаем несколько свойств для одного элемента
+// если записать через бэктики можно одним из параметров присвоить переменную
+// box.style.cssText = `background-color: green; width: ${num}`;
+
+// Задаем параметр всем элементам псевдомассива
+
+// for (let i = 0; i < hearts.length; i++) {
+//     hearts[i].style.backgroundColor = 'green';
+// }
+
+hearts.forEach(anyname => {
+    anyname.style.backgroundColor = 'green';
+});
+
+// Создаем div который находится только внутри js к html отношения не имемет.
+const div = document.createElement('div');
+// const text = document.createTextNode('Тут был я');
+div.classList.add('black');
+// Добавляем новый div в конец body, добавлять можно относительно конкретного элемента а не массива
+// document.body.append(div);
+
+// Можно не получать какойто элемент как переменную а сразу добавлять div
+document.querySelector('.wrapper').append(div);
+
+wrapper.prepend(div); // последнее действие перебивает предидущее а не выполняет оба
+
+hearts[0].after(div); // можно использовать также метод before
+
+// circles[0].remove(); // удалил первый кружок
+
+hearts[0].replaceWith(circles[0]); // Заменил первое сердечко первм кружочком
+
+// Вставляем содержимое  div
+div.innerHTML = "<h1>New block</h1>";
+
+// div.textContent = "Content"; // вставка только текста
+
+// Вставка html блока относительно другого элемена
+div.insertAdjacentHTML("afterend", '<h2>Hello</h2>');
+
+030
+/* Задания на урок:
+
+1) Удалить все рекламные блоки со страницы (правая часть сайта)
+
+2) Изменить жанр фильма, поменять "комедия" на "драма"
+
+3) Изменить задний фон постера с фильмом на изображение "bg.jpg". Оно лежит в папке img.
+Реализовать только при помощи JS
+
+4) Список фильмов на странице сформировать на основании данных из этого JS файла.
+Отсортировать их по алфавиту 
+
+5) Добавить нумерацию выведенных фильмов */
+
+'use strict';
+
+const movieDB = {
+    movies: [
+        "Логан",
+        "Лига справедливости",
+        "Ла-ла лэнд",
+        "Одержимость",
+        "Скотт Пилигрим против..."
+    ]
+};
+
+
+
+const promo__advImg = document.querySelectorAll('.promo__adv img'),
+      promo__bg = document.querySelector('.promo__bg'),
+      promo__genre = promo__bg.querySelector('.promo__genre'),
+      promo__interactiveList = document.querySelector('.promo__interactive-list');
+      
+
+
+// 1
+// const img = document.getElementsByTagName('img');
+// // console.log(img);
+// img[1].remove();
+// img[1].remove();
+// img[1].remove();
+
+promo__advImg.forEach(item => {
+    item.remove();
+});
+
+// 2
+// const promo__genre = document.querySelector('.promo__genre');
+// const newPromo__genre = document.createElement('newPromo__genre');
+// newPromo__genre.classList.add('promo__genre');
+// newPromo__genre.innerHTML = "<div>ДРАМА</div>";
+// promo__genre.replaceWith(newPromo__genre);
+
+promo__genre.textContent = "ДРАМА";
+
+// 3
+// const promo__bg = document.querySelector('.promo__bg');
+// console.log('promo__bg');
+
+// const newPromo__bg = document.createElement('newPromo__bg');
+// newPromo__bg.src = "url('../img/bg.jpg')";
+// console.log(newPromo__bg);
+
+
+// promo__bg.style.background = `${newPromo__bg} center (center / cover) no-repeat`;
+// url('../img/mars.webp') center (center / cover) no-repeat;
+
+promo__bg.style.backgroundImage = 'url("img/bg.jpg")';
+// Если использовать дважды одинаковые кавычки будет синтаксическая ошибка => любые но разные
+// js по умолчанию работает в html странице поть указывать из html
+
+// 4, 5
+
+// сперва необхоимо очистить содержимое блока
+promo__interactiveList.innerHTML = "";
+
+// сортируем фильма по названию
+movieDB.movies.sort();
+
+movieDB.movies.forEach((film, i) => {
+    promo__interactiveList.innerHTML += `
+        <li class="promo__interactive-item">${i + 1} ${film}
+            <div class="delete"></div>
+        </li>
+    `;
+});
+
+031 обработчики событий
+const btns = document.querySelectorAll('button'),
+      overlay = document.querySelector('.overlay');
+
+
+      // btn.onclick  = function() {
+//     alert("Onclick");
+// };
+
+// btn.addEventListener('click', () => {
+//     alert("Click");
+// });
+
+let i = 0;
+const deleteElement = (event) => {
+    // event.target.remove();
+    console.log(event.currentTarget);
+    console.log(event.type);
+    i++;
+    if (i == 1) {
+        btn.removeEventListener('click', deleteElement);
+    }
+};
+
+// btn.addEventListener('click', deleteElement);
+// overlay.addEventListener('click', deleteElement);
+
+// первый аргумент - тип события, обработчик функция, опции(свойства объекта)
+btns.forEach(btn => {
+    btn.addEventListener('click', deleteElement, {once: true});
+});
+
+// const link = document.querySelector('a');
+
+// link.addEventListener('click', function(event) {
+//     event.preventDefault(); // отменяет стандартное поведение браузера с ссылкой
+
+//     console.log(event.target);
+// });
