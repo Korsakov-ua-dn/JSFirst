@@ -85,7 +85,7 @@ npm i json-server --save-dev
 зависимость для разработки devDependencies
 
 так же автоматически созданы папка
-    node_modules - содердит все наши npm пакеты
+    node_modules - содержит все наши npm пакеты
     package-lock.json - мини зависимости этих же пакетов
 
 папка node_modules не пушится на репозиторий это прописывваем в файле .gitignore
